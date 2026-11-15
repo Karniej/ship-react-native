@@ -1,0 +1,29 @@
+# Heavy folders not needed for the build
+node_modules/
+.git/
+.expo/
+ios/Pods/
+ios/build/
+android/build/
+android/app/build/
+android/.gradle/
+dist/
+
+# Working files
+assets/source/
+assets/images/icon_*.png
+
+# Docs (not needed in build)
+docs/
+docs.md
+DOCUMENTATION.md
+README.md
+CHANGELOG.md
+pdf-content/
+
+# Misc
+.agents/
+__tests__/
+.husky/
+.github/
+convex/

@@ -1,0 +1,65 @@
+{
+  "name": "@ship-rn/system",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Typed Ship RN config, module registry, validation, and planner.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsup src/index.ts src/assembler.ts src/config.ts src/modules.ts src/opportunity.ts src/planner.ts src/preview.ts src/run-state.ts --format esm,cjs --dts --clean",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./assembler": {
+      "types": "./dist/assembler.d.ts",
+      "import": "./dist/assembler.js",
+      "require": "./dist/assembler.cjs"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js",
+      "require": "./dist/config.cjs"
+    },
+    "./modules": {
+      "types": "./dist/modules.d.ts",
+      "import": "./dist/modules.js",
+      "require": "./dist/modules.cjs"
+    },
+    "./planner": {
+      "types": "./dist/planner.d.ts",
+      "import": "./dist/planner.js",
+      "require": "./dist/planner.cjs"
+    },
+    "./preview": {
+      "types": "./dist/preview.d.ts",
+      "import": "./dist/preview.js",
+      "require": "./dist/preview.cjs"
+    },
+    "./opportunity": {
+      "types": "./dist/opportunity.d.ts",
+      "import": "./dist/opportunity.js",
+      "require": "./dist/opportunity.cjs"
+    },
+    "./run-state": {
+      "types": "./dist/run-state.d.ts",
+      "import": "./dist/run-state.js",
+      "require": "./dist/run-state.cjs"
+    }
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "vitest": "^3.2.6"
+  }
+}

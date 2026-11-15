@@ -1,0 +1,51 @@
+name: Apply Matrix
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "22.13.0"
+
+jobs:
+  apply-matrix:
+    name: Apply ${{ matrix.config }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - full-suite
+          - image-generation
+          - audio-transcription
+          - free-anonymous-chat
+          - no-onboarding-hard-paywall
+          - video-creators
+
+    steps:
+      - name: Checkout boilerplate
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply sample config
+        run: cp "test-configs/${{ matrix.config }}.config.ts" ship.config.ts
+
+      - name: Run applier
+        run: npm run apply -- --force
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint

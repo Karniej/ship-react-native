@@ -1,0 +1,24 @@
+{
+  "generatedBy": "ship-rn apply",
+  "configHash": "8dda45a5a32d5c0759f9933e4bbc3274ab9de1b0acdc7041b3278fefe49553b8",
+  "appName": "ShipReactNative",
+  "template": "full-suite",
+  "backend": "convex",
+  "auth": "optional",
+  "monetization": "revenuecat",
+  "modules": [
+    "auth",
+    "subscriptions",
+    "credits",
+    "onboarding",
+    "gallery",
+    "analytics",
+    "notifications",
+    "image-generation",
+    "video-generation",
+    "text-to-speech",
+    "transcription",
+    "image-identification",
+    "ai-chat"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "reportPath": "system-runs/<slug>/device-proof/report.md",
+  "runLogPath": "system-runs/<slug>/run.md",
+  "requiredReportFields": [
+    "finalStatus",
+    "platform",
+    "timestamp",
+    "requestedTarget",
+    "observedTargetClass",
+    "anonymizedDevice",
+    "appIdentifier",
+    "testIntent",
+    "maestroFlowPath",
+    "adReplayPath",
+    "redactedCommandTemplates",
+    "maestroVersion",
+    "agentDeviceVersion",
+    "maestroMcpToolNames",
+    "agentDeviceMcpToolNames",
+    "simulatorResult",
+    "physicalDeviceResult",
+    "artifactInventory",
+    "failures",
+    "retries",
+    "selectorRepairs",
+    "runLogLink"
+  ],
+  "bidirectionalLinks": {
+    "runLogLinksReport": true,
+    "reportLinksRunLog": true
+  },
+  "toolEvidence": {
+    "maestro": {
+      "mcpCommand": "maestro mcp",
+      "requiresAdvertisedToolNames": true
+    },
+    "agentDevice": {
+      "mcpCommand": "npx --no-install agent-device mcp",
+      "requiresAdvertisedToolNames": true
+    }
+  },
+  "policies": {
+    "maestroCloudMayProvePhysicalDevice": false,
+    "iosPhysicalPrerequisites": ["xcode-signing", "provisioning", "pairing", "developer-mode"],
+    "redactedValues": [
+      "credentials",
+      "signing-data",
+      "replay-values",
+      "device-identifiers",
+      "expo-dev-client-urls"
+    ]
+  },
+  "artifactInventory": {
+    "requiredFields": ["path", "sizeBytes", "sha256"],
+    "requireNonEmptyFor": "real-device-passed"
+  },
+  "statuses": {
+    "blocked": { "adReplayPath": "not-applicable", "requiredArtifacts": [] },
+    "simulator-passed": { "adReplayPath": "not-applicable", "requiredArtifacts": [] },
+    "real-device-passed": {
+      "adReplayPath": "required",
+      "requiredArtifacts": [".ad", "mp4", "screenshot", "log"]
+    },
+    "device-unavailable": { "adReplayPath": "not-applicable", "requiredArtifacts": [] },
+    "failed": { "adReplayPath": "not-applicable", "requiredArtifacts": [] }
+  }
+}

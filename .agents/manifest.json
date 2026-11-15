@@ -1,0 +1,220 @@
+{
+  "product": "ShipReactNative System",
+  "version": "1.3.0",
+  "description": "A recoverable, supervised agent workflow that validates a mobile app idea with attributable evidence, then turns it into a designed, verified, device-proven, store-ready Expo and React Native project on a production foundation.",
+  "entryPoint": ".agents/skills/ship-system/SKILL.md",
+  "pipeline": [
+    {
+      "stage": "Idea",
+      "skill": "ship-system",
+      "output": "A human-chosen raw idea or existing spec path"
+    },
+    {
+      "stage": "Validate",
+      "skill": "validate-idea",
+      "output": "validation/<slug>/evidence.json and report.md"
+    },
+    {
+      "stage": "Spec",
+      "skill": "create-spec",
+      "output": "specs/<slug>.md"
+    },
+    {
+      "stage": "Design",
+      "skill": "design-screens",
+      "output": "Claude Design prototype and design/<slug>/ implementation contract"
+    },
+    {
+      "stage": "Setup",
+      "skill": "setup-ship-rn",
+      "output": "ship.config.ts and applied configuration records"
+    },
+    {
+      "stage": "Build",
+      "skill": "build-idea",
+      "output": "Implemented Expo and React Native app"
+    },
+    {
+      "stage": "Verify",
+      "skill": "validate-skills",
+      "output": "Doctor, lint, TypeScript, test, and production-export results"
+    },
+    {
+      "stage": "Device-proof",
+      "skill": "verify-on-device",
+      "output": "system-runs/<slug>/device-proof/report.md with target classification, a linked run log, and a SHA-256 artifact inventory"
+    },
+    {
+      "stage": "Store-prep",
+      "skill": "prepare-store-submission",
+      "output": "Store-readiness report and submission assets"
+    }
+  ],
+  "humanGates": [
+    "Review fresh validation evidence and approve the idea; WEAK requires an explicit risk override",
+    "Approve the Claude Design prototype and implementation contract before Setup or Build",
+    "Approve any production build or store submission"
+  ],
+  "skills": [
+    {
+      "name": "ship-system",
+      "job": "Coordinate the supervised end-to-end app pipeline and its paper trail",
+      "inputs": ["Raw app idea or specs/<slug>.md"],
+      "outputs": [
+        "system-runs/<slug>/run.md",
+        "system-runs/<slug>/run-state.json",
+        "Stage checkpoints and human decisions"
+      ]
+    },
+    {
+      "name": "validate-idea",
+      "job": "Validate an app idea against fresh, attributable market, competitor, trend, policy, and feasibility evidence",
+      "inputs": ["Raw idea or existing spec", "Online evidence sources"],
+      "outputs": ["validation/<slug>/evidence.json", "validation/<slug>/report.md"]
+    },
+    {
+      "name": "create-spec",
+      "job": "Turn an approved validation report into an honest app spec",
+      "inputs": ["Approved validation report, or a raw idea that remains UNVALIDATED"],
+      "outputs": ["specs/<slug>.md"]
+    },
+    {
+      "name": "design-screens",
+      "job": "Create a synced interactive Claude Design prototype and implementation contract before code",
+      "inputs": ["Approved specs/<slug>.md", "Authenticated Claude Design MCP"],
+      "outputs": [
+        "Claude Design project",
+        "design/<slug>/claude-design/ export or handoff",
+        "design/<slug>/ implementation contract"
+      ]
+    },
+    {
+      "name": "setup-ship-rn",
+      "job": "Configure the app identity, foundation, backend, features, and branding",
+      "inputs": ["Approved spec and design pack", "App configuration and credentials"],
+      "outputs": [
+        "ship.config.ts",
+        ".ship-rn-applied.json",
+        "PROJECT_SUMMARY.md",
+        "REQUIRED_ENV.md"
+      ]
+    },
+    {
+      "name": "build-idea",
+      "job": "Implement an approved idea spec and design pack on the foundation",
+      "inputs": ["Approved spec", "Approved design pack", "Applied ship.config.ts"],
+      "outputs": ["App routes, components, stores, translations, and metadata"]
+    },
+    {
+      "name": "add-ai-service",
+      "job": "Add an AI capability across both supported backend modes",
+      "inputs": ["Provider and capability requirements"],
+      "outputs": ["Convex action", "Expo API route", "AI service", "Feature and credit wiring"]
+    },
+    {
+      "name": "add-paywall",
+      "job": "Configure RevenueCat products, premium gates, and review-safe paywalls",
+      "inputs": ["Product and entitlement requirements"],
+      "outputs": ["RevenueCat configuration", "Paywall and premium-gating changes"]
+    },
+    {
+      "name": "verify-on-device",
+      "job": "Author and run Maestro E2E flows, then capture explicitly classified simulator or physical-device evidence",
+      "inputs": [
+        "Platform: ios or android",
+        "Plain-English test intent",
+        "Target: local-sim or local-device"
+      ],
+      "outputs": [
+        "system-runs/<slug>/device-proof/report.md",
+        "Maestro YAML",
+        "Optional physical-device MP4, screenshots, logs, and .ad replay, linked and hashed by the report when real-device-passed"
+      ]
+    },
+    {
+      "name": "prepare-store-submission",
+      "job": "Prepare store metadata, assets, compliance, builds, and review checks",
+      "inputs": ["Verified app and release requirements"],
+      "outputs": ["Store-readiness report", "Metadata and asset checklist"]
+    },
+    {
+      "name": "validate-skills",
+      "job": "Validate skill metadata, manifest references, and pipeline agreement",
+      "inputs": [".agents/skills/", ".agents/manifest.json", "AGENTS.md"],
+      "outputs": ["Pass or actionable validation failures"]
+    },
+    {
+      "name": "react-native-best-practices",
+      "job": "Guide React Native performance and architecture work",
+      "inputs": ["React Native problem or optimization target"],
+      "outputs": ["Evidence-based diagnosis and implementation guidance"]
+    },
+    {
+      "name": "upgrading-react-native",
+      "job": "Upgrade React Native or Expo with compatibility checks",
+      "inputs": ["Current and target React Native or Expo versions"],
+      "outputs": ["Upgrade changes and verification results"]
+    },
+    {
+      "name": "github",
+      "job": "Handle GitHub branches, commits, and pull request workflows",
+      "inputs": ["Repository workflow task"],
+      "outputs": ["GitHub branch, commit, or pull request result"]
+    }
+  ],
+  "license": {
+    "source": "LICENSE",
+    "type": "MIT",
+    "summary": "Open source under the MIT License. Use, modify, and redistribute it for any personal or commercial purpose; keep the copyright and permission notice in copies."
+  },
+  "docs": [
+    {
+      "path": "AGENTS.md",
+      "job": "Cold-start instructions and complete skill index"
+    },
+    {
+      "path": "START_HERE.md",
+      "job": "Human setup path"
+    },
+    {
+      "path": "docs/CLAUDE_DESIGN.md",
+      "job": "Claude Design MCP authentication, sync, handoff, and troubleshooting"
+    },
+    {
+      "path": "docs/IDEA_VALIDATION.md",
+      "job": "Fresh evidence, provenance, scoring, and decision contract"
+    },
+    {
+      "path": "docs/RECOVERY_CONTRACT.md",
+      "job": "Run state, checkpoints, retry, branch-back, and resume contract"
+    },
+    {
+      "path": "opportunity-data/100appideas/SOURCE.md",
+      "job": "Versioned provenance and limitations of the historical opportunity seed"
+    },
+    {
+      "path": ".agents/device-proof.contract.json",
+      "job": "Normative statuses, report fields, tool evidence, links, and conditional artifacts"
+    },
+    {
+      "path": "docs/DEVICE_PROOF.md",
+      "job": "Maestro and agent-device setup, evidence classes, and artifact contract"
+    },
+    {
+      "path": "docs/CODEBASE_ANALYSIS.md",
+      "job": "Technical map and extraction notes for the product and config system"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "job": "Application architecture"
+    },
+    {
+      "path": "docs/DESIGN_SYSTEM.md",
+      "job": "Theme and UI conventions"
+    },
+    {
+      "path": "docs/APP_STORE_CHECKLIST.md",
+      "job": "Store readiness and review checklist"
+    }
+  ]
+}
